@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_spalsh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/qinglu"
+    android:orientation="horizontal"
+    tools:context="com.bawei.lvwenjing.dliao.SpalshActivity">
+
+    <Button
+        android:id="@+id/spalsh_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_weight="1"
+        android:text="登陆" />
+
+    <Button
+        android:id="@+id/spalsh_regist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_weight="1"
+        android:text="注册" />
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_photo_acitvity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/writer"
+    android:orientation="vertical"
+    tools:context="com.bawei.lvwenjing.dliao.activitys.PhotoAcitvity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/style"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/photo_finsh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text=" " />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/photo_title_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/user_icon_default" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="一张清晰的头像可以吸引更多异性"
+        android:textColor="@color/style"
+        android:textSize="13dp" />
+
+    <Button
+        android:id="@+id/photo_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape"
+        android:text="拍照"
+        android:textColor="@color/writer" />
+
+    <Button
+        android:id="@+id/photo_pic_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape"
+        android:text="本地上传"
+        android:textColor="@color/writer" />
+</LinearLayout>
