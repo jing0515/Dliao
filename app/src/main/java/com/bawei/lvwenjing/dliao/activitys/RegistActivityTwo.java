@@ -10,11 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.bawei.lvwenjing.dliao.widget.MyToast;
 import com.bawei.lvwenjing.dliao.R;
+import com.bawei.lvwenjing.dliao.base.AppManager;
 import com.bawei.lvwenjing.dliao.base.BaseMvpActivity;
+import com.bawei.lvwenjing.dliao.base.IApplication;
 import com.bawei.lvwenjing.dliao.presenter.RegistActivityTwopresenter;
 import com.bawei.lvwenjing.dliao.view.RegistActivityTwoView;
+import com.bawei.lvwenjing.dliao.widget.MyToast;
 
 import java.util.concurrent.TimeUnit;
 
@@ -49,6 +51,7 @@ public class RegistActivityTwo extends BaseMvpActivity<RegistActivityTwoView, Re
     private EventHandler eventHandler;
 
 
+
     @Override
     public RegistActivityTwopresenter initpresenter() {
         return new RegistActivityTwopresenter();
@@ -59,9 +62,10 @@ public class RegistActivityTwo extends BaseMvpActivity<RegistActivityTwoView, Re
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist_two);
 
+
         //  SMSSDK.initSDK(RegistActivityTwo.this, "1f32935270169", "29bd32d477e5a679e749a4ae7af771cb");
 
-        SMSSDK.initSDK(RegistActivityTwo.this, "1f3316358a377", "268073f78d73766d652cf4a29ef36cbd");
+        SMSSDK.initSDK(IApplication.getApplication(), "1f3316358a377", "268073f78d73766d652cf4a29ef36cbd");
 
         ButterKnife.bind(this);
         eventHandler = new EventHandler() {
@@ -96,7 +100,7 @@ public class RegistActivityTwo extends BaseMvpActivity<RegistActivityTwoView, Re
 
     @OnClick(R.id.two_regist_regist)
     public void twoRegistRegist() {
-
+       // CrashReport.testJavaCrash();
         persenter.nextStep(twoRegistPhone.getText().toString().trim(), twoRegistPassword.getText().toString().trim());
     }
 
@@ -105,21 +109,22 @@ public class RegistActivityTwo extends BaseMvpActivity<RegistActivityTwoView, Re
 
         switch (type) {
             case 1:
-                MyToast.makeText(RegistActivityTwo.this, "手机号码不能为空", Toast.LENGTH_SHORT);
+                MyToast.makeText(IApplication.getApplication(), "手机号码不能为空", Toast.LENGTH_SHORT);
                 break;
             case 2:
-                MyToast.makeText(RegistActivityTwo.this, "手机格式不正确", Toast.LENGTH_SHORT);
+                MyToast.makeText(IApplication.getApplication(), "手机格式不正确", Toast.LENGTH_SHORT);
                 break;
             case 3:
-                MyToast.makeText(RegistActivityTwo.this, "验证码不能为空", Toast.LENGTH_SHORT);
+                MyToast.makeText(IApplication.getApplication(), "验证码不能为空", Toast.LENGTH_SHORT);
                 break;
             case 4:
-                MyToast.makeText(RegistActivityTwo.this, "验证码不正确", Toast.LENGTH_SHORT);
+                MyToast.makeText(IApplication.getApplication(), "验证码不正确", Toast.LENGTH_SHORT);
                 break;
             case 5:
-                Intent intent = new Intent(RegistActivityTwo.this, RegistActivityThree.class);
+                Intent intent = new Intent(IApplication.getApplication(), RegistActivityThree.class);
                 intent.putExtra("photo", twoRegistPhone.getText().toString().trim());
                 startActivity(intent);
+                AppManager.getAppManager().finishActivity(RegistActivityTwo.this);
                 break;
         }
 

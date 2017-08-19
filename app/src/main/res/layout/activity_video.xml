@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_video"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hyphenate.media.EMCallSurfaceView
+            android:id="@+id/surface_big"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.hyphenate.media.EMCallSurfaceView
+            android:id="@+id/surface_small"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/video_activity_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/btn_qupai_camera_switch_facing_normal" />
+
+    <TextView
+        android:id="@+id/videoactivity_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="20dp"
+        android:text="吕文静"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+    <Chronometer
+        android:id="@+id/videoactivity_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="60dp"
+        android:format="00:00:00"
+        android:textColor="@color/writer"
+        android:textSize="15dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/videoactivity_bt_guaduan"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="150dp"
+            android:background="@drawable/ic_tel_ring_off" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/videoactivity_bt_jieting"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="82dp"
+                android:background="@drawable/ic_tel_answer" />
+
+
+            <Button
+                android:id="@+id/videoactivity_bt_jujie"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="60dp"
+                android:background="@drawable/ic_tel_ring_off" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -21,7 +21,7 @@ class LoggingInterceptor implements Interceptor {
     long t2 = System.nanoTime();
     KLog.i(String.format("Received response for %s in %.1fms%n%s",
         response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-
+//http://qhb.2dyt.com/MyInterface/userAction_uploadPhotoAlbum.action
     return response;
   }
 }

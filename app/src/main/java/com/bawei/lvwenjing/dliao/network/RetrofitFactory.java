@@ -22,8 +22,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class RetrofitFactory {
-
-
     private static OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .cookieJar(new CookiesManager(IApplication.application))
             .connectTimeout(20, TimeUnit.SECONDS)
@@ -65,10 +63,23 @@ public class RetrofitFactory {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
+    public static void posts(String url, Map<String, String> map, Observer<String> observer) {
+        String sign = JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map)));
+        apiService.post(url, map).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
 
 
     public static void uploadPhoto(MultipartBody multipartBody, Map<String, String> map, Observer<String> observer) {
         apiService.uploadPhoto(multipartBody, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+    public static void uploadPhotos(MultipartBody multipartBody, Map<String, String> map, Observer<String> observer) {
+        apiService.uploadPhotos(multipartBody, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

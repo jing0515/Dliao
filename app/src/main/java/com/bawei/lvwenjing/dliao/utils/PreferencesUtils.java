@@ -17,7 +17,7 @@ public class PreferencesUtils {
     public static  final String USER = "userinformation";
 
 
-    public static <T> void addConfigInfo(Context context, String key, T value ) {
+    public static <T> void  addConfigInfo(Context context, String key, T value ) {
         try {
             if ( notNull( value ) ) {
                 SharedPreferences mShareConfig =

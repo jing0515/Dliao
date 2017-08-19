@@ -7,4 +7,8 @@
     <string name="tab_discover_text">消息</string>
     <string name="tab_feed_text">新鲜事</string>
     <string name="tab_me_text">我的</string>
+    <string name="fill_style">Fill Style</string>
+    <string name="grid_style">Grid Style</string>
+    <item name="tag_first" type="id"></item>
+    <item name="tag_second" type="id"></item>
 </resources>

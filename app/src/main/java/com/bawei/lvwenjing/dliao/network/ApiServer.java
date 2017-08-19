@@ -36,4 +36,8 @@ public interface ApiServer {
     @Multipart
     @POST("MyInterface/userAction_uploadImage.action")
     Observable<String> uploadPhoto(@Part("user.file") MultipartBody file, @PartMap Map<String, String> map);
+    //上传图片
+    @Multipart
+    @POST("/MyInterface/userAction_uploadPhotoAlbum.action")
+    Observable<String> uploadPhotos(@Part("user.file") MultipartBody file, @PartMap Map<String, String> map);
 }

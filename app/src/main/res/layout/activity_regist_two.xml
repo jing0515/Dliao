@@ -8,6 +8,7 @@
     tools:context="com.bawei.lvwenjing.dliao.activitys.RegistActivityTwo">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/style"
@@ -54,6 +55,7 @@
         android:padding="20dp">
 
         <EditText
+            android:maxLength="11"
             android:text="13645616851"
             android:imeOptions="actionNext"
             android:inputType="number"
@@ -68,6 +70,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:maxLength="4"
                 android:text="2222"
                 android:id="@+id/two_regist_password"
                 android:layout_width="match_parent"
@@ -99,4 +102,8 @@
         android:background="@drawable/shape"
         android:text="确定"
         android:textColor="@color/writer" />
+    <RelativeLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout>

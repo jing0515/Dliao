@@ -81,7 +81,7 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:password="true"
-            android:text="11111111111111111111" />
+            android:text="1111" />
     </LinearLayout>
 
     <LinearLayout
@@ -164,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="请输入地区"
+            android:text="安徽—淮北—濉溪"
             android:textSize="18dp" />
     </LinearLayout>
 

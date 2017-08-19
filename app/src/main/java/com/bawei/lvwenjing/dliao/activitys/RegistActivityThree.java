@@ -11,11 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bawei.lvwenjing.dliao.R;
+import com.bawei.lvwenjing.dliao.base.AppManager;
 import com.bawei.lvwenjing.dliao.base.BaseMvpActivity;
 import com.bawei.lvwenjing.dliao.base.IApplication;
 import com.bawei.lvwenjing.dliao.bean.RegisterBean;
 import com.bawei.lvwenjing.dliao.cipher.Md5Utils;
 import com.bawei.lvwenjing.dliao.presenter.RegistActivityThreepresenter;
+import com.bawei.lvwenjing.dliao.utils.PreferencesUtils;
 import com.bawei.lvwenjing.dliao.view.RegistActivityThreeView;
 import com.bawei.lvwenjing.dliao.widget.MyToast;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -30,16 +32,17 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
 import static com.bawei.lvwenjing.dliao.R.id.registthree_age2;
-import static com.bawei.lvwenjing.dliao.R.id.registthree_butNext;
 import static com.bawei.lvwenjing.dliao.R.id.registthree_ctiy2;
+import static com.bawei.lvwenjing.dliao.R.id.registthree_finsh;
 import static com.bawei.lvwenjing.dliao.R.id.registthree_sex2;
+import static com.bawei.lvwenjing.dliao.R.id.registthree_zhuce;
 
 
 public class RegistActivityThree extends BaseMvpActivity<RegistActivityThreeView, RegistActivityThreepresenter> implements RegistActivityThreeView {
 
-    @BindView(R.id.registthree_finsh)
+    @BindView(registthree_finsh)
     ImageView registthreeFinsh;
-    @BindView(R.id.registthree_zhuce)
+    @BindView(registthree_zhuce)
     TextView registthreeZhuce;
     @BindView(R.id.registthree_name)
     TextView registthreeName;
@@ -80,9 +83,21 @@ public class RegistActivityThree extends BaseMvpActivity<RegistActivityThreeView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist_three);
         ButterKnife.bind(this);
-        System.loadLibrary("core");
         Intent intent = getIntent();
         photo = intent.getStringExtra("photo");
+        toData();
+    }
+
+    @OnClick(registthree_finsh)
+    public void setregistthree_finsh() {
+        finish();
+    }
+
+    @OnClick(registthree_zhuce)
+    public void setregistthree_zhuce() {
+        startActivity(new Intent(IApplication.getApplication(), RegistActivityTwo.class));
+        AppManager.getAppManager().finishActivity(RegistActivityThree.this);
+        AppManager.getAppManager().finishActivity(RegistActivityTwo.class);
     }
 
     AlertDialog.Builder builder;
@@ -145,10 +160,10 @@ public class RegistActivityThree extends BaseMvpActivity<RegistActivityThreeView
 
     }
 
-    @OnClick(registthree_butNext)
+    /*@OnClick(registthree_butNext)
     public void setregistthree_butNext() {
         toData();
-    }
+    }*/
 
 
     private void toData() {
@@ -158,7 +173,7 @@ public class RegistActivityThree extends BaseMvpActivity<RegistActivityThreeView
                     public void accept(@NonNull Object o) throws Exception {
                         persenter.vaildInfor(photo, registthreeNameEt.getText().toString().trim(), registthreeSex2.getText().toString().trim()
                                 , registthreeAge2.getText().toString().trim(), registthreeCtiy2.getText().toString().trim()
-                                , registthree2.getText().toString().trim(), Md5Utils.getMD5(registthreePassword2.getText().toString().trim()));
+                                , registthree2.getText().toString().trim(), Md5Utils.getMD5(registthreePassword2.getText().toString().trim()), PreferencesUtils.getValueByKey(IApplication.getApplication(), "lat", "0"), PreferencesUtils.getValueByKey(IApplication.getApplication(), "lng", "0"));
                     }
                 });
 
@@ -166,12 +181,14 @@ public class RegistActivityThree extends BaseMvpActivity<RegistActivityThreeView
 
     @Override
     public void registerSuccess(RegisterBean registerBean) {
-        if(registerBean.getResult_code() == 200){
+        if (registerBean.getResult_code() == 200) {
             startActivity(new Intent(RegistActivityThree.this, PhotoAcitvity.class));
-        }else {
-            MyToast.makeText(IApplication.getApplication(),registerBean.getResult_message(), Toast.LENGTH_SHORT);
+            AppManager.getAppManager().finishActivity(RegistActivityThree.this);
+            AppManager.getAppManager().finishActivity(RegistActivityTwo.class);
+        } else {
+            MyToast.makeText(IApplication.getApplication(), registerBean.getResult_message(), Toast.LENGTH_SHORT);
         }
-      }
+    }
 
     @Override
     public void registerFailed(int code) {

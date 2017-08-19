@@ -6,5 +6,10 @@
     <color name="style">#4FB0BD</color>
     <color name="writer">#ffff</color>
     <color name="texthui">#BDC0C4</color>
+    <color name="texthuis">#dee1e6</color>
     <color name="textshenhui">#999a9c</color>
+    <color name="luyin">#55000000</color>
+    <color name="tou">#f2f2f2</color>
+    <color name="touming">#838282</color>
+    <color name="huibai">#ede4e4</color>
 </resources>

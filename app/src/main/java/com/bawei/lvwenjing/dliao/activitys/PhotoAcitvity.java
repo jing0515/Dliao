@@ -1,7 +1,6 @@
 package com.bawei.lvwenjing.dliao.activitys;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -16,9 +16,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bawei.lvwenjing.dliao.R;
+import com.bawei.lvwenjing.dliao.base.AppManager;
+import com.bawei.lvwenjing.dliao.base.IActivity;
 import com.bawei.lvwenjing.dliao.base.IApplication;
 import com.bawei.lvwenjing.dliao.bean.UploadPhotoBean;
 import com.bawei.lvwenjing.dliao.core.JNICore;
@@ -47,10 +50,12 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
+import static com.bawei.lvwenjing.dliao.R.id.photo_finsh;
 import static com.bawei.lvwenjing.dliao.R.id.photo_pic_button;
+import static com.bawei.lvwenjing.dliao.R.id.photo_tiao_login;
 import static com.bawei.lvwenjing.dliao.utils.ImageResizeUtils.copyStream;
 
-public class PhotoAcitvity extends Activity {
+public class PhotoAcitvity extends IActivity {
 
     @BindView(R.id.photo_finsh)
     ImageView photoFinsh;
@@ -58,12 +63,16 @@ public class PhotoAcitvity extends Activity {
     ImageView phototitlephoto;
     @BindView(R.id.photo_button)
     Button photoButton;
+    @BindView(R.id.photo_tiao_login)
+    TextView phototiao;
     @BindView(photo_pic_button)
     Button photoPicButton;
     @BindView(R.id.activity_photo_acitvity)
     LinearLayout activityPhotoAcitvity;
     private Button bt;
     private BitmapToRound_Util round_util;
+    private int width;
+    private int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +151,18 @@ public class PhotoAcitvity extends Activity {
         return LocalPhotoName;
     }
 
+    @OnClick(photo_finsh)
+    public void photofinsh() {
+
+        finish();
+    }
+
+    @OnClick(photo_tiao_login)
+    public void phototiao() {
+        startActivity(new Intent(IApplication.getApplication(), LoginActivity.class));
+
+    }
+
     @OnClick(photo_pic_button)
     public void photoPic() {
         toPhoto();
@@ -150,6 +171,7 @@ public class PhotoAcitvity extends Activity {
     //开启照相机
     public void camear() {
         try {
+            createLocalPhotoName();
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, INTENTFORCAMERA);
         } catch (Exception e) {
@@ -224,7 +246,8 @@ public class PhotoAcitvity extends Activity {
                             if (!bitmap.isRecycled()) {
                                 bitmap.isRecycled();
                             }
-
+                            width = bitmap.getWidth();
+                            height = bitmap.getHeight();
                             uploadFile(f);
 
                         }
@@ -286,6 +309,8 @@ public class PhotoAcitvity extends Activity {
 
         long ctimer = System.currentTimeMillis();
         Map<String, String> map = new HashMap<String, String>();
+        map.put("user.picWidth", width + "");
+        map.put("user.picHeight", height + "");
         map.put("user.currenttimer", ctimer + "");
         String sign = JNICore.getSign(SortUtils.getMapResult(SortUtils.sortString(map)));
         map.put("user.sign", sign);
@@ -296,7 +321,6 @@ public class PhotoAcitvity extends Activity {
                 .build();
 
 
-
         RetrofitFactory.uploadPhoto(body, map, new BaseObServer() {
             @Override
             public void onSuccess(String result) {
@@ -305,7 +329,11 @@ public class PhotoAcitvity extends Activity {
                     Gson gson = new Gson();
                     UploadPhotoBean bean = gson.fromJson(result, UploadPhotoBean.class);
                     if (bean.getResult_code() == 200) {
-                        MyToast.makeText(IApplication.getApplication(), "上传成功", Toast.LENGTH_SHORT);
+                        MyToast.makeText(IApplication.getApplication(), "注册成功 请登录", Toast.LENGTH_SHORT);
+                        AppManager.getAppManager().finishActivity(RegistActivityThree.class);
+                        SystemClock.sleep(2000);
+                        startActivity(new Intent(PhotoAcitvity.this, LoginActivity.class));
+                        AppManager.getAppManager().finishActivity(PhotoAcitvity.this);
                     }
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -316,7 +344,6 @@ public class PhotoAcitvity extends Activity {
             @Override
             public void onFailed(int code) {
                 MyToast.makeText(IApplication.getApplication(), "" + code, Toast.LENGTH_SHORT);
-
             }
         });
 

@@ -42,7 +42,7 @@ public class ImageResizeUtils {
             // 获取这个图片的宽和高
             decodeFile(path, opt); // 此时返回bm为空
 
-            int inSampleSize = 1;
+               int inSampleSize = 1;
             final int width = opt.outWidth;
 //           width 照片的原始宽度  specifiedWidth 需要压缩的宽度
 //            1000 980

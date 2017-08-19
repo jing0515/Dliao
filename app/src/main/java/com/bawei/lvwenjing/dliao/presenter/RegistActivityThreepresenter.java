@@ -23,31 +23,21 @@ public class RegistActivityThreepresenter extends BasePresenter<RegistActivityTh
         registerInforFragmentModel = new RegistActivityThreeModeImpl();
     }
 
-    public void vaildInfor(String phone, String nickname, String sex, String age, String area, String introduce, String password) {
+    public void vaildInfor(String phone, String nickname, String sex, String age, String area, String introduce, String password, String lat, String lgi) {
 
         if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(nickname) && !TextUtils.isEmpty(sex) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(introduce) && !TextUtils.isEmpty(password)) {
-            /**
-             *
-             *     map.put("user.phone", phone);
-             map.put("user.nickname", nickname);
-             map.put("user.password", password);
-             map.put("user.gender", sex);
-             map.put("user.area", area);
-             map.put("user.age", age);
-             map.put("user.introduce", introduce);
-             */
+            registerInforFragmentModel.getData(phone, nickname, sex, age, area, introduce, password, lat, lgi,
+                    new RegistActivityThreeMode.RegisterInforFragmentDataListener() {
+                        @Override
+                        public void onSuccess(RegisterBean registerBean) {
+                            view.registerSuccess(registerBean);
+                        }
 
-            registerInforFragmentModel.getData(phone, nickname, sex, age, area, introduce, password, new RegistActivityThreeMode.RegisterInforFragmentDataListener() {
-                @Override
-                public void onSuccess(RegisterBean registerBean) {
-                    view.registerSuccess(registerBean);
-                }
-
-                @Override
-                public void onFailed(int code) {
-                    view.registerFailed(code);
-                }
-            });
+                        @Override
+                        public void onFailed(int code) {
+                            view.registerFailed(code);
+                        }
+                    });
         } else {
             MyToast.makeText(IApplication.getApplication(), "参数为空请重新输入", Toast.LENGTH_SHORT);
         }

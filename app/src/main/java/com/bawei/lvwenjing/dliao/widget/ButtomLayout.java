@@ -31,6 +31,7 @@ public class ButtomLayout extends LinearLayout {
         RadioButton radioButtonFirst = (RadioButton) view.findViewById(R.id.radiobutton_home);
         RadioButton radioButtonSecond = (RadioButton) view.findViewById(R.id.radiobutton_discover);
         RadioButton radioButtonThird = (RadioButton) view.findViewById(R.id.radiobutton_feed);
+
         RadioButton radioButtonFourth = (RadioButton) view.findViewById(R.id.radiobutton_me);
 
 
@@ -91,8 +92,6 @@ public class ButtomLayout extends LinearLayout {
     public void setOnSelectListener(OnSelectListener listener){
         this.listener = listener ;
     }
-
-
 
 
 

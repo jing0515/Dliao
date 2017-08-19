@@ -8,19 +8,29 @@
     android:orientation="horizontal"
     tools:context="com.bawei.lvwenjing.dliao.SpalshActivity">
 
-    <Button
+    <ImageView
+        android:layout_weight="1"
         android:id="@+id/spalsh_login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="500dp"
-        android:layout_weight="1"
-        android:text="登陆" />
 
-    <Button
-        android:id="@+id/spalsh_regist"
-        android:layout_width="match_parent"
+        />
+
+    <ImageView
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
+        android:src="@drawable/like_heart_03_00007" />
+
+    <ImageView
+        android:layout_marginRight="30dp"
         android:layout_weight="1"
-        android:text="注册" />
+        android:id="@+id/spalsh_regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+    />
 </LinearLayout>

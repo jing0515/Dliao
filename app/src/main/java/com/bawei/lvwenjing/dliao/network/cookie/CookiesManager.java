@@ -11,11 +11,11 @@ import okhttp3.HttpUrl;
 
 public class CookiesManager implements CookieJar {
 
-    public CookiesManager(Context context){
+    public CookiesManager(Context context) {
         cookieStore = new PersistentCookieStore(context);
     }
 
-    private PersistentCookieStore cookieStore = null ;
+    private PersistentCookieStore cookieStore = null;
 
     @Override
     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
@@ -30,5 +30,11 @@ public class CookiesManager implements CookieJar {
     public List<Cookie> loadForRequest(HttpUrl url) {
         List<Cookie> cookies = cookieStore.get(url);
         return cookies;
+    }
+
+    //退出时候使用
+    public boolean removeAllCookie() {
+
+        return cookieStore.removeAll();
     }
 }

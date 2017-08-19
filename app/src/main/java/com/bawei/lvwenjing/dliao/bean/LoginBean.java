@@ -8,7 +8,7 @@ public class LoginBean {
 
     /**
      * result_message : success
-     * data : {"area":"请输入地区","password":"698d51a19d8a121ce581499d7b701668","lasttime":1499411897527,"createtime":1499411039395,"gender":"男","lng":0,"phone":"13645616851","introduce":"hhaha","nickname":"安徽","userId":2,"lat":0}
+     * data : {"area":"安徽省-安庆市-枞阳县","password":"698d51a19d8a121ce581499d7b701668","lasttime":1499740315647,"createtime":1499686282170,"gender":"男","lng":116.295966,"phone":"13645616851","introduce":"hhaha","imagePath":"http://qhb.2dyt.com/MyInterface/images/cf3abb90-040d-45dc-ad2c-7fcd11f348a9.jpg","nickname":"安徽","userId":153,"lat":40.037251}
      * result_code : 200
      */
 
@@ -42,17 +42,18 @@ public class LoginBean {
 
     public static class DataBean {
         /**
-         * area : 请输入地区
+         * area : 安徽省-安庆市-枞阳县
          * password : 698d51a19d8a121ce581499d7b701668
-         * lasttime : 1499411897527
-         * createtime : 1499411039395
+         * lasttime : 1499740315647
+         * createtime : 1499686282170
          * gender : 男
-         * lng : 0
+         * lng : 116.295966
          * phone : 13645616851
          * introduce : hhaha
+         * imagePath : http://qhb.2dyt.com/MyInterface/images/cf3abb90-040d-45dc-ad2c-7fcd11f348a9.jpg
          * nickname : 安徽
-         * userId : 2
-         * lat : 0
+         * userId : 153
+         * lat : 40.037251
          */
 
         private String area;
@@ -60,12 +61,22 @@ public class LoginBean {
         private long lasttime;
         private long createtime;
         private String gender;
-        private int lng;
+        private double lng;
         private String phone;
         private String introduce;
+        private String imagePath;
         private String nickname;
         private int userId;
-        private int lat;
+        private double lat;
+        private String yxpassword;
+
+        public String getYxpassword() {
+            return yxpassword;
+        }
+
+        public void setYxpassword(String yxpassword) {
+            this.yxpassword = yxpassword;
+        }
 
         public String getArea() {
             return area;
@@ -107,11 +118,11 @@ public class LoginBean {
             this.gender = gender;
         }
 
-        public int getLng() {
+        public double getLng() {
             return lng;
         }
 
-        public void setLng(int lng) {
+        public void setLng(double lng) {
             this.lng = lng;
         }
 
@@ -131,6 +142,14 @@ public class LoginBean {
             this.introduce = introduce;
         }
 
+        public String getImagePath() {
+            return imagePath;
+        }
+
+        public void setImagePath(String imagePath) {
+            this.imagePath = imagePath;
+        }
+
         public String getNickname() {
             return nickname;
         }
@@ -147,11 +166,11 @@ public class LoginBean {
             this.userId = userId;
         }
 
-        public int getLat() {
+        public double getLat() {
             return lat;
         }
 
-        public void setLat(int lat) {
+        public void setLat(double lat) {
             this.lat = lat;
         }
     }

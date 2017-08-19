@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/luyin_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="使用听筒模式"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/luyin_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="收藏"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/luyin_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="转换为文字（仅普通话）"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/luyin_tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="删除"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/luyin_tv5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="更多"
+        android:textSize="18dp" />
+
+</LinearLayout>
